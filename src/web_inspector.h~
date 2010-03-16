@@ -1,2 +1,0 @@
-WebKitWebInspector*
-create_inspector (WebKitWebView* web_view, GtkContainer* container);
