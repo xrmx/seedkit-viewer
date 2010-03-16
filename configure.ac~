@@ -30,7 +30,7 @@ AM_PROG_LIBTOOL
 
 
 
-PKG_CHECK_MODULES(SEEDKIT, [gtk+-2.0 >= 2.12 seed webkit-1.0  ])
+PKG_CHECK_MODULES(SEEDKIT, [gtk+-2.0 >= 2.12 seed webkit-1.0 gtk-2.0 ])
 
 
 

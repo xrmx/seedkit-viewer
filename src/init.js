@@ -1,0 +1,1 @@
+Seed.print("Reading init script");

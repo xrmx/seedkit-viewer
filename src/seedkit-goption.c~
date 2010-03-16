@@ -1,13 +1,5 @@
 #include <glib-2.0/glib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <string.h>
-#include <stdio.h>
-
-#include <config.h>
-
-#include <gtk/gtk.h>
+#include <>
 #include "seedkit-goption.h"
 
 /*

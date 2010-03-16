@@ -1,0 +1,1 @@
+GtkWidget* create_web_view(GtkContainer* container);

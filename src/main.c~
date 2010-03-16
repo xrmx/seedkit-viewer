@@ -106,8 +106,7 @@ main (int argc, char *argv[])
 	gchar* absolute_filename =  g_strdup_printf("%s/%s", current_dir, filenames[0]);
 	gchar* file_uri = g_filename_to_uri (absolute_filename, NULL, &error);
 	g_free(absolute_filename);
-	window = create_window (file_uri, inspector);
-	g_free(file_uri);
+	window = create_window (file_uri, inspector);	
 	gtk_widget_show_all (window);
 	gtk_main ();
 	return 0;

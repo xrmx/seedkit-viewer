@@ -1,0 +1,2 @@
+void goption_init(int argc, char *argv[], GError *error);
+

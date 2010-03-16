@@ -23,7 +23,7 @@ WebKitWebSettings *settings = webkit_web_view_get_settings(WEBKIT_WEB_VIEW(web_v
 	WebKitWebInspector *inspector = webkit_web_view_get_inspector (WEBKIT_WEB_VIEW(web_view));
 	webkit_web_inspector_show(inspector);
 
-	g_signal_connect (G_OBJECT (inspector), "inspect-web-view", G_CALLBACK(add_inspector_to_container), container);
+	g_signal_connect (G_OBJECT (inspector), "inspect-web-view", G_CALLBACK(add_inspector_to_window), container);
 
 	return inspector;
 }
