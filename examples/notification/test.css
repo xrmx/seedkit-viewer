@@ -1,0 +1,18 @@
+.button {
+	height: 28px;
+	width: 100px;
+	background-color: #EDECEB;
+	text-align: center;
+	vertical-align:middle;
+	border: 1px solid grey;
+	-webkit-border-radius:4px;
+}
+
+.button_pressed {
+
+
+}
+
+.demo {
+	background-color: #EDECEB;	
+}
