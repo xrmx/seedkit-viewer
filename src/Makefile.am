@@ -2,8 +2,6 @@
 
 ## Created by Anjuta
 
-uidir = $(datadir)/seedkit/ui
-ui_DATA = seedkit.ui
 
 AM_CPPFLAGS = \
 	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
@@ -19,8 +17,8 @@ bin_PROGRAMS = seedkit
 
 seedkit_SOURCES = \
 	main.c \
-	web_inspector.c \
-	web_inspector.h \
+	seedkit-inspector.c \
+	seedkit-inspector.h \
 	seedkit-webkit.c \
 	seedkit-webkit.h \
 	seedkit-gtk.c \
@@ -31,10 +29,6 @@ seedkit_LDFLAGS = \
 
 seedkit_LDADD = $(SEEDKIT_LIBS)
 
-EXTRA_DIST = $(ui_DATA) \
-	init.js
-
 # Remove ui directory on uninstall
 uninstall-local:
-	-rm -r $(uidir)
 	-rm -r $(datadir)/seedkit
