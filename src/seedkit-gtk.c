@@ -1,6 +1,6 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
 /*
- * main.c
+ * seedkit-gtk.c
  * Copyright (C) The SeedKit team. 2010 <scaroo@gmail.com>
  * 
  * SeedKit is free software: you can redistribute it and/or modify it
@@ -29,7 +29,7 @@
 #include <webkit/webkit.h>
 
 #include "seedkit-webkit.h"
-#include "web_inspector.h"
+#include "seedkit-inspector.h"
 
 void
 destroy (GtkWidget *widget, gpointer data)
@@ -39,7 +39,7 @@ destroy (GtkWidget *widget, gpointer data)
 
 
 GtkWidget*
-create_window (gchar* file_uri, gboolean with_inspector)
+create_window (gchar* file_uri, gboolean with_inspector, gboolean with_menu)
 {
 	GtkWidget *window;
 
@@ -49,11 +49,21 @@ create_window (gchar* file_uri, gboolean with_inspector)
 	g_signal_connect (G_OBJECT (window), "destroy",
                       G_CALLBACK (destroy), NULL);
 	GtkWidget* vbox = gtk_vbox_new(false, 6);
-	
-	GtkWidget* web_view = create_web_view (GTK_CONTAINER(vbox), file_uri);
-	if (with_inspector == TRUE)
-		create_inspector(WEBKIT_WEB_VIEW(web_view), GTK_CONTAINER(vbox));
+
+	if (with_menu == TRUE) {
+		// TODO, expose the menu instance in seed context
+		 GtkWidget* menu = gtk_menu_bar_new();
+		gtk_container_add (GTK_CONTAINER(vbox), menu);
+	}
+
+	GtkWidget* web_view = create_web_view (file_uri);
 	gtk_container_add (GTK_CONTAINER(vbox), web_view);
+	
+	if (with_inspector == TRUE)
+	{
+		create_inspector(WEBKIT_WEB_VIEW(web_view), GTK_CONTAINER(vbox));
+	}
+	
 
 	gtk_container_add (GTK_CONTAINER(window), vbox);
 	return window;

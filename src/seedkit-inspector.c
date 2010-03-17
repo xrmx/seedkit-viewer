@@ -2,20 +2,39 @@
 #include <seed/seed.h>
 #include <webkit/webkit.h>
 
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
+/*
+ * seedkit-webinspector.c
+ * Copyright (C) The SeedKit team. 2010 <scaroo@gmail.com>
+ * 
+ * SeedKit is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * SeedKit is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 WebKitWebView*  add_inspector_to_container (WebKitWebInspector *web_inspector,
                                          WebKitWebView      *web_view,
                                          gpointer            hbox)
 {	
 		GtkWidget *inspector_view = webkit_web_view_new ();
 		gtk_container_add (GTK_CONTAINER(hbox), inspector_view);
+	
 		return WEBKIT_WEB_VIEW(inspector_view);
 }
 
 WebKitWebInspector*
 create_inspector (WebKitWebView* web_view, GtkContainer* container) { 
-	
-	
-WebKitWebSettings *settings = webkit_web_view_get_settings(WEBKIT_WEB_VIEW(web_view));
+			
+	WebKitWebSettings *settings = webkit_web_view_get_settings(WEBKIT_WEB_VIEW(web_view));
 	g_object_set (G_OBJECT (settings),
               "enable-developer-extras", TRUE,   
               NULL);

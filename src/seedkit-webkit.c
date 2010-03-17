@@ -1,6 +1,6 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
 /*
- * main.c
+ * seedkit-webkit.c
  * Copyright (C) The SeedKit team. 2010 <scaroo@gmail.com>
  * 
  * SeedKit is free software: you can redistribute it and/or modify it
@@ -35,9 +35,11 @@ void window_object_cleared (WebKitWebView  *web_view,
                             gpointer        context,
                             gpointer        arg3,
                             gpointer        user_data) {
-    gchar *script_uri = user_data;
+    
 	SeedEngine *eng;
-	eng = seed_init_with_context(NULL, NULL, context);							
+	eng = seed_init_with_context(NULL, NULL, context);	
+
+	gchar *script_uri = user_data;							
 	if (script_uri != NULL) {
 		printf("Evaluating %s", script_uri);
 		SeedScript* script = seed_script_new_from_file (eng->context, script_uri);
@@ -46,7 +48,7 @@ void window_object_cleared (WebKitWebView  *web_view,
 }
 
 
-GtkWidget* create_web_view(GtkContainer* container, gchar* file_uri) {
+GtkWidget* create_web_view(gchar* file_uri) {
 	GtkWidget *web_view = webkit_web_view_new ();
 	g_signal_connect(G_OBJECT(web_view), "window-object-cleared", 
                       G_CALLBACK(window_object_cleared), NULL);

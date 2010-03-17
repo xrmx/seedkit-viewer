@@ -54,20 +54,19 @@
 
 #include "seedkit-gtk.h"
 #include "seedkit-webkit.h"
-#include "web_inspector.h"
+#include "seedkit-inspector.h"
 
-/* For testing propose use the local (not installed) ui file */
-/* #define UI_FILE PACKAGE_DATA_DIR"/seedkit/ui/seedkit.ui" */
-#define UI_FILE "src/seedkit.ui"
 
 static gboolean inspector = FALSE;
+static gboolean menu = FALSE;
 static gchar* script_uri = NULL;
-static gchar** filenames = {"ui.html", NULL};
+static gchar* filenames[2] = {"ui.html", NULL};
 
 static GOptionEntry entries[] = 
 {
   { "inspector", 'i', 0, G_OPTION_ARG_NONE, &inspector, "Display WebKit inspector", NULL },
   { "script", 's', 0, G_OPTION_ARG_STRING, &script_uri, "An initializer script. Has full access to low level APIs.", "" },
+ { "menu", 'm', 0, G_OPTION_ARG_NONE, &menu, "Provide integration with a native menu.", NULL },
 	{G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &filenames, "Balbalbal", NULL},
 { NULL }
 };
@@ -101,12 +100,14 @@ main (int argc, char *argv[])
 	goption_init(argc, argv, error);
 	gtk_set_locale ();
 	gtk_init (&argc, &argv);
+	
 	gchar* current_dir = g_get_current_dir();
-
 	gchar* absolute_filename =  g_strdup_printf("%s/%s", current_dir, filenames[0]);
+	g_free(current_dir);
 	gchar* file_uri = g_filename_to_uri (absolute_filename, NULL, &error);
 	g_free(absolute_filename);
-	window = create_window (file_uri, inspector);
+	
+	window = create_window (file_uri, inspector, menu);
 	g_free(file_uri);
 	gtk_widget_show_all (window);
 	gtk_main ();
