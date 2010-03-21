@@ -38,14 +38,23 @@ destroy (GtkWidget *widget, gpointer data)
 }
 
 
+void set_window_title (WebKitWebView  *web_view,
+                       WebKitWebFrame *frame,
+                       gchar          *title,
+                       gpointer        user_data){
+
+
+    gtk_window_set_title(GTK_WINDOW(user_data), title);  
+}
+
 GtkWidget*
-create_window (gchar* file_uri, gboolean with_inspector, gboolean with_menu)
+create_window (gchar* file_uri,gchar* script_uri, gboolean with_inspector, gboolean with_menu)
 {
 	GtkWidget *window;
 
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-	gtk_window_set_title (GTK_WINDOW (window), "Webview + Seed demo");
 
+	gtk_window_set_default_size(window, 800, 600);
 	g_signal_connect (G_OBJECT (window), "destroy",
                       G_CALLBACK (destroy), NULL);
 	GtkWidget* vbox = gtk_vbox_new(false, 6);
@@ -56,7 +65,9 @@ create_window (gchar* file_uri, gboolean with_inspector, gboolean with_menu)
 		gtk_container_add (GTK_CONTAINER(vbox), menu);
 	}
 
-	GtkWidget* web_view = create_web_view (file_uri);
+	GtkWidget* web_view = create_web_view (file_uri, script_uri);
+	g_signal_connect(G_OBJECT(web_view), "title-changed", 
+                      G_CALLBACK(set_window_title), window);
 	gtk_container_add (GTK_CONTAINER(vbox), web_view);
 	
 	if (with_inspector == TRUE)
@@ -64,7 +75,6 @@ create_window (gchar* file_uri, gboolean with_inspector, gboolean with_menu)
 		create_inspector(WEBKIT_WEB_VIEW(web_view), GTK_CONTAINER(vbox));
 	}
 	
-
 	gtk_container_add (GTK_CONTAINER(window), vbox);
 	return window;
 }

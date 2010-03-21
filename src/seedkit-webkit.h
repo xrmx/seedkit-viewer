@@ -1,1 +1,1 @@
-GtkWidget* create_web_view(gchar* file_uri);
+GtkWidget* create_web_view(gchar* file_uri, gchar* script_uri);
