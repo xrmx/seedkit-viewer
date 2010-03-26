@@ -1,4 +1,3 @@
-
 function dump(arr,level) {
 	var dumped_text = "";
 	if(!level) level = 0;
@@ -30,19 +29,8 @@ try {
 DBus = imports.dbus;
 GLib = imports.gi.GLib;
 } catch (e) {
+	print("Exception while loading DBus :");
 	print(dump(e, 2));
 
 }
-/*
-var r = new Rhythmbox();
-
-r.connect("playingUriChanged", 
-	       function(emitter, state){
-	       alert(state);
-		   //$("file-uri").text(state);
-	       });
-r.nextRemote();
-*/
-mainloop = GLib.main_loop_new();
-GLib.main_loop_run(mainloop);
 
