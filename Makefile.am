@@ -19,12 +19,13 @@ INTLTOOL_FILES = intltool-extract.in \
 
 EXTRA_DIST = $(seedkitdoc_DATA) \
 	$(INTLTOOL_FILES)\
-	dump.js
+	seedkit-1.0.pc.in
 
 DISTCLEANFILES = intltool-extract \
 	intltool-merge \
 	intltool-update \
-	po/.intltool-merge-cache
+	po/.intltool-merge-cache \
+	*~
 
 
 # Remove doc directory on uninstall

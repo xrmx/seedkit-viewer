@@ -211,6 +211,7 @@ SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
 USE_NLS = @USE_NLS@
+VALAC = @VALAC@
 VERSION = @VERSION@
 XGETTEXT = @XGETTEXT@
 abs_builddir = @abs_builddir@
@@ -281,12 +282,13 @@ INTLTOOL_FILES = intltool-extract.in \
 
 EXTRA_DIST = $(seedkitdoc_DATA) \
 	$(INTLTOOL_FILES)\
-	dump.js
+	seedkit-1.0.pc.in
 
 DISTCLEANFILES = intltool-extract \
 	intltool-merge \
 	intltool-update \
-	po/.intltool-merge-cache
+	po/.intltool-merge-cache \
+	*~
 
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive

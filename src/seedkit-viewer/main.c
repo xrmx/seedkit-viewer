@@ -114,6 +114,9 @@ main (int argc, char *argv[])
 	
 	goption_init(argc, argv, error);
 	gtk_set_locale ();
+	g_thread_init(NULL);
+	gdk_threads_init();       
+   
 	gtk_init (&argc, &argv);
 	
 	gchar* file_uri = get_file_uri (filenames ==  NULL ? SEEDKIT_DEFAULT_UI_PATH : filenames[0], error);

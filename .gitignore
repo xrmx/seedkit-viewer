@@ -1,5 +1,8 @@
 *~
 configure
 Makefile
-autom4te.cache
-autom4te.cache/*
+autom4te.cache/
+Debug/
+.anjuta/
+.anjuta_sym_db.db
+

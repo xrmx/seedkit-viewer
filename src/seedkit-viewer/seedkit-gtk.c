@@ -54,7 +54,7 @@ create_window (gchar* file_uri,gchar* script_uri, gboolean with_inspector, gbool
 
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 
-	gtk_window_set_default_size(window, 800, 600);
+	gtk_window_set_default_size (GTK_WINDOW(window), 800, 600);
 	g_signal_connect (G_OBJECT (window), "destroy",
                       G_CALLBACK (destroy), NULL);
 	GtkWidget* vbox = gtk_vbox_new(false, 6);

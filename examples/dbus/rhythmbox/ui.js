@@ -1,36 +1,39 @@
-function dump(arr,level) {
-	var dumped_text = "";
-	if(!level) level = 0;
-	
-	//The padding given at the beginning of the line.
-	var level_padding = "";
-	for(var j=0;j<level+1;j++) level_padding += "    ";
-	
-	if(typeof(arr) == 'object') { //Array/Hashes/Objects 
-		for(var item in arr) {
-			var value = arr[item];
-			
-			if(typeof(value) == 'object') { //If it is an array,
-				dumped_text += level_padding + "'" + item + "' ...\n";
-				dumped_text += dump(value,level+1);
-			} else {
-				dumped_text += level_padding + "'" + item + "' => \"" + value + "\"\n";
-			}
-		}
-	} else { //Stings/Chars/Numbers etc.
-		dumped_text = "===>"+arr+"<===("+typeof(arr)+")";
-	}
-	return dumped_text;
-}
+Seed.include("./dbus-rhythmbox.js");
+
+//$(document).ready(function(){
 
 
+//var shell = new RhythmboxShell();
+var player = new RhythmboxPlayer();
 
-try {
-DBus = imports.dbus;
-GLib = imports.gi.GLib;
-} catch (e) {
-	print("Exception while loading DBus :");
-	print(dump(e, 2));
+player.getVolumeRemote(function (volume) {print("oi")});
 
-}
+
+mainloop = GLib.main_loop_new();
+GLib.main_loop_run(mainloop);
+
+/*
+$("#next-button").click(function(){
+	r.nextRemote();
+});
+
+$("#prev-button").click(function(){
+	r.previousRemote();
+});
+
+
+r.connect("playingUriChanged", 
+	       function(emitter, uri){
+		var song = shell.getSongPropertiesRemoteSync(uri);
+		print(song);	
+	       });
+
+r.connect("playingSongPropertyChanged", 
+	       function(emitter, title, property_name, old_value, new_value){
+		if (property_name == "rb:coverArt-uri")
+			$("#cover-art").attr('src', new_value);
+
+});
+*/
+//});
 

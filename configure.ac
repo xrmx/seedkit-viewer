@@ -30,7 +30,9 @@ AM_PROG_LIBTOOL
 
 
 
-PKG_CHECK_MODULES(SEEDKIT, [gtk+-2.0 >= 2.12 seed webkit-1.0  ])
+PKG_CHECK_MODULES(SEEDKIT, [gtk+-2.0 >= 2.12 seed webkit-1.0])
+
+AM_PROG_VALAC([0.7.0])
 
 
 
@@ -71,5 +73,8 @@ AM_CONDITIONAL(ENABLE_GTK_DOC, test x$enable_gtk_doc = xyes)
 AC_OUTPUT([
 Makefile
 src/Makefile
+src/libseedkit/Makefile
+src/libseedkit/seedkit-1.0.pc
+src/seedkit-viewer/Makefile
 po/Makefile.in
 ])

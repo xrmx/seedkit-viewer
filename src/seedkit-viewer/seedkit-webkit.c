@@ -28,40 +28,12 @@
 #include <gtk/gtk.h>
 #include <seed/seed.h>
 #include <webkit/webkit.h>
-
-
-void window_object_cleared (WebKitWebView  *web_view,
-                            WebKitWebFrame *frame,
-                            gpointer        context,
-                            gpointer        arg3,
-                            gpointer        user_data) {
-    
-	SeedEngine *eng;
-	eng = seed_init_with_context(NULL, NULL, context);	
-
-	gchar *script_uri = user_data;							
-	if (script_uri != NULL) {
-		printf("Evaluating %s\n", script_uri);
-		SeedScript* script = seed_script_new_from_file (eng->context, script_uri);
-		seed_evaluate(eng->context, script, 0);
-	}
-}
-
+#include <libseedkit/seed-view.h>
 
 
 
 GtkWidget* create_web_view(gchar* file_uri, gchar* script_uri) {
-	GtkWidget *web_view = webkit_web_view_new ();
-
-	WebKitWebSettings *settings = webkit_web_view_get_settings(WEBKIT_WEB_VIEW(web_view));
-	g_object_set (G_OBJECT (settings),
-              "auto-resize-window", TRUE,   
-              NULL);
-
-	
-	g_signal_connect(G_OBJECT(web_view), "window-object-cleared", 
-                      G_CALLBACK(window_object_cleared), script_uri);
-	
+	GtkWidget *web_view = seed_view_new ();
 	webkit_web_view_open (WEBKIT_WEB_VIEW(web_view), file_uri);
 	return web_view;
 }

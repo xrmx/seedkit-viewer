@@ -17,8 +17,8 @@ RhythmboxShell.prototype = {
 var RhythmboxShellIface = {
     name: 'org.gnome.Rhythmbox.Shell',
     methods: [
-    { name: 'getSongProperties', inSignature: 's', outSignature: 'a{sv}' },],
-    signals: []
+    { name: 'quit', inSignature: '', outSignature: '' },
+    { name: 'getSongProperties', inSignature: 's', outSignature: 'a\{sv\}' },],
 };
 
 proxifyPrototype (RhythmboxShell.prototype, RhythmboxShellIface);
@@ -53,32 +53,4 @@ var RhythmboxPlayerIface = {
 };
 
 proxifyPrototype (RhythmboxPlayer.prototype, RhythmboxPlayerIface);
-
-
-$(document).ready(function(){
-var shell = new RhythmboxShell();
-var r = new RhythmboxPlayer();
-
-$("#next-button").click(function(){
-	r.nextRemote();
-});
-
-$("#prev-button").click(function(){
-	r.previousRemote();
-});
-
-r.connect("playingUriChanged", 
-	       function(emitter, uri){
-		$('#file-uri').text(uri);
-	       });
-
-r.connect("playingSongPropertyChanged", 
-	       function(emitter, title, property_name, old_value, new_value){
-		if (property_name == "rb:coverArt-uri")
-			$("#cover-art").attr('src', new_value);
-
-});
-});
-
-
 
