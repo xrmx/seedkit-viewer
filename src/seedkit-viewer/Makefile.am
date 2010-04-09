@@ -7,7 +7,7 @@ AM_CPPFLAGS = \
 	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
 	-DPACKAGE_SRC_DIR=\""$(srcdir)"\" \
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
-	$(SEEDKIT_CFLAGS) -I/usr/include/seedkit-1.0/
+	$(SEEDKIT_CFLAGS) -I/usr/include/seedkit-1.0/ -I../
 
 AM_CFLAGS =\
 	 -Wall\
