@@ -25,7 +25,7 @@ seedkit_viewer_SOURCES = \
 	seedkit-gtk.h 
 
 seedkit_viewer_LDFLAGS = \
-	-Wl,--export-dynamic
+	-L../libseedkit -Wl,--export-dynamic
 
 seedkit_viewer_LDADD = $(SEEDKIT_LIBS) -lseedkit-1.0
 
