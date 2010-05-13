@@ -1,40 +1,48 @@
 dnl Process this file with autoconf to produce a configure script.
 dnl Created by Anjuta application wizard.
+AC_PREREQ([2.63])
+AC_INIT([seedkit],[0.1])
 
-AC_INIT(seedkit, 0.1)
-
-AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
 AC_CONFIG_HEADERS([config.h])
-AM_MAINTAINER_MODE
 
-AC_ISC_POSIX
+AM_INIT_AUTOMAKE([1.11])
+AM_MAINTAINER_MODE([enable])
+
+# Support silent build rules. Disable by either passing --disable-silent-rules
+# to configure or passing V=1 to make
+AM_SILENT_RULES([yes])
+
+# Check for programs
 AC_PROG_CC
-AM_PROG_CC_STDC
-AC_HEADER_STDC
+
+AM_PROG_VALAC([0.7.0])
+
+#Initialize libtool
+LT_PREREQ([2.2])
+LT_INIT
 
 
+# Check for libraries
+GTK_REQUIRED=2.12
+SEED_REQUIRED=2.31.1
+WEBKIT_REQUIRED=1.0
+
+PKG_CHECK_MODULES(SEEDKIT, [
+        gtk+-2.0    >= $GTK_REQUIRED
+        seed        >= $SEED_REQUIRED
+        webkit-1.0  >= $WEBKIT_REQUIRED
+])
 
 
 dnl ***************************************************************************
 dnl Internatinalization
 dnl ***************************************************************************
+IT_PROG_INTLTOOL([0.41.0])
+
 GETTEXT_PACKAGE=seedkit
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [GETTEXT package name])
 AM_GLIB_GNU_GETTEXT
-IT_PROG_INTLTOOL([0.35.0])
-
-
-
-AM_PROG_LIBTOOL
-
-
-
-PKG_CHECK_MODULES(SEEDKIT, [gtk+-2.0 >= 2.12 seed webkit-1.0])
-
-AM_PROG_VALAC([0.7.0])
-
-
 
 ##################################################
 # Check for gtk-doc.
@@ -70,7 +78,7 @@ fi
 AM_CONDITIONAL(ENABLE_GTK_DOC, test x$enable_gtk_doc = xyes)
 
 
-AC_OUTPUT([
+AC_CONFIG_FILES([
 Makefile
 src/Makefile
 src/libseedkit/Makefile
@@ -78,3 +86,4 @@ src/libseedkit/seedkit-1.0.pc
 src/seedkit-viewer/Makefile
 po/Makefile.in
 ])
+AC_OUTPUT
