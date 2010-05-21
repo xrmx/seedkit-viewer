@@ -28,12 +28,12 @@
 #include <gtk/gtk.h>
 #include <seed/seed.h>
 #include <webkit/webkit.h>
-#include <libseedkit/seed-view.h>
+#include <libseedkit/seedkit-view.h>
 
 
 
 GtkWidget* create_web_view(gchar* file_uri, gchar* script_uri) {
-	GtkWidget *web_view = seed_view_new ();
+	GtkWidget *web_view = seedkit_view_new ();
 	webkit_web_view_open (WEBKIT_WEB_VIEW(web_view), file_uri);
 	return web_view;
 }
