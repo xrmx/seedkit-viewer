@@ -17,13 +17,13 @@ AM_CFLAGS =\
 lib_LTLIBRARIES = libseedkit-1.0.la
 
 libseedkit_clientincludedir = $(includedir)/seedkit-1.0/libseedkit
-libseedkit_clientinclude_HEADERS = seed-view.h
+libseedkit_clientinclude_HEADERS = seedkit-view.h
 libseedkit_1_0_la_SOURCES = \
-	seed-view.h \
-	seed-view.c
+	seedkit-view.h \
+	seedkit-view.c
 
 libseedkit_1_0_la_LDFLAGS = 	\
-	-export-symbols-regex '^seed_.*'
+	-export-symbols-regex '^seedkit_.*'
 
 libseedkit_1_0_la_LIBADD = $(SEEDKIT_LIBS)
 
