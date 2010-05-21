@@ -57,7 +57,7 @@ create_window (gchar* file_uri,gchar* script_uri, gboolean with_inspector, gbool
 	gtk_window_set_default_size (GTK_WINDOW(window), 800, 600);
 	g_signal_connect (G_OBJECT (window), "destroy",
                       G_CALLBACK (destroy), NULL);
-	GtkWidget* vbox = gtk_vbox_new(false, 6);
+	GtkWidget* vbox = gtk_vpaned_new();
 
 	if (with_menu == TRUE) {
 		// TODO, expose the menu instance in seed context
@@ -71,9 +71,8 @@ create_window (gchar* file_uri,gchar* script_uri, gboolean with_inspector, gbool
 	gtk_container_add (GTK_CONTAINER(vbox), web_view);
 	
 	if (with_inspector == TRUE)
-	{
 		create_inspector(WEBKIT_WEB_VIEW(web_view), GTK_CONTAINER(vbox));
-	}
+
 	
 	gtk_container_add (GTK_CONTAINER(window), vbox);
 	return window;
