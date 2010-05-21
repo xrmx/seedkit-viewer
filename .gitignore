@@ -3,6 +3,7 @@ configure
 Makefile
 autom4te.cache/
 Debug/
+Optimized/
 .anjuta/
 .anjuta_sym_db.db
 
