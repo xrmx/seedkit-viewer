@@ -88,15 +88,19 @@ void goption_init(int argc, char *argv[],GError *error)
 }
 
 gchar* get_file_uri(gchar* file_path, GError* error) {
-
 	if (file_path == NULL)
 		return NULL;
+	
+	gboolean is_uri = !g_path_is_absolute (file_path);
+	if (is_uri)
+		return g_strdup(file_path);
+	
 	gchar* current_dir = g_get_current_dir();
 	gchar* absolute_filename =  g_strdup_printf("%s/%s", current_dir, file_path);
 	g_free(current_dir);
 	gchar* file_uri = g_filename_to_uri (absolute_filename, NULL, &error);
 	g_free(absolute_filename);
-
+	
 	return file_uri;
 }
 
