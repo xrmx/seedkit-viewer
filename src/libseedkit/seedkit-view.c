@@ -47,10 +47,12 @@ seedkit_view_init (SeedKitView *self)
 	WebKitWebView* web_view = WEBKIT_WEB_VIEW(self);
 
 	WebKitWebSettings *settings = webkit_web_view_get_settings(web_view);
-	g_object_set (G_OBJECT (settings),
-              "auto-resize-window", TRUE,   
-              NULL);
+	//g_object_set (G_OBJECT (settings),
+    //          "auto-resize-window", TRUE,   
+    //          NULL);
 	
+
+	// Initialize the seed engine when notified of the js context creation
 	g_signal_connect(G_OBJECT(web_view), "window-object-cleared", 
                       G_CALLBACK(window_object_cleared), self);
 }
