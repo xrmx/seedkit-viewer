@@ -60,6 +60,7 @@
 #define SEEDKIT_DEFAULT_INIT_PATH "./init.js"
 
 static gboolean inspector = FALSE;
+static gboolean widget = FALSE;
 static gboolean menu = FALSE;
 static gchar* script_path = NULL;
 static gchar** filenames = NULL;
@@ -67,6 +68,7 @@ static gchar** filenames = NULL;
 static GOptionEntry entries[] = 
 {
   { "inspector", 'i', 0, G_OPTION_ARG_NONE, &inspector, "Display WebKit inspector", NULL },
+  { "widget", 'i', 0, G_OPTION_ARG_NONE, &widget, "Widget mode : no window decorations, ARGB color map.", NULL },
   { "script", 's', 0, G_OPTION_ARG_STRING, &script_path, "An initializer script. Has full access to low level APIs.", "" },
   { "menu", 'm', 0, G_OPTION_ARG_NONE, &menu, "Provide integration with a native menu.", NULL },
   {G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &filenames, "Balbalbal", NULL},
