@@ -32,8 +32,8 @@
 
 
 
-GtkWidget* create_web_view(gchar* file_uri, gchar* script_uri) {
-	GtkWidget *web_view = seedkit_view_new ();
-	webkit_web_view_open (WEBKIT_WEB_VIEW(web_view), file_uri);
+WebKitWebView* create_web_view(gchar* file_uri, gchar* script_uri) {
+	WebKitWebView *web_view = WEBKIT_WEB_VIEW(seedkit_view_new ());
+	webkit_web_view_open (web_view, file_uri);
 	return web_view;
 }

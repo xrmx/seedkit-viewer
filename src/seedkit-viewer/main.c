@@ -108,7 +108,7 @@ int
 main (int argc, char *argv[])
 {
  	GtkWidget *window;
-	GError *error;
+	GError *error = NULL;
 
 #ifdef ENABLE_NLS
 	bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
@@ -124,7 +124,7 @@ main (int argc, char *argv[])
 	gtk_init (&argc, &argv);
 	
 	gchar* file_uri = get_file_uri (filenames ==  NULL ? SEEDKIT_DEFAULT_UI_PATH : filenames[0], error);
-
+	g_assert_no_error(error);
 	//gchar* script_uri = get_file_uri (script_path ==  NULL ? NULL : script_path, error);
 
 	window = create_window (file_uri, script_path, inspector, menu);
