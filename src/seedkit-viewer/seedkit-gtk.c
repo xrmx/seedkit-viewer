@@ -72,7 +72,7 @@ create_window (gchar* file_uri, SeedKitViewerSettings* settings)
 		GdkColormap* argb_colormap = gdk_screen_get_rgba_colormap (screen);
 		gtk_widget_set_colormap (window, argb_colormap);
 		gtk_window_set_decorated (GTK_WINDOW(window), FALSE);
-		webkit_web_view_set_transparent(web_view, TRUE);		
+		webkit_web_view_set_transparent(WEBKIT_WEB_VIEW(web_view), TRUE);		
 
 	}
 
