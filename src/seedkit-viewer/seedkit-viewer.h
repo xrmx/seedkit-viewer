@@ -1,6 +1,6 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
 /*
- * seedkit-gtk.h
+ * seedkit-viewer.h
  * Copyright (C) The SeedKit team. 2010 <scaroo@gmail.com>
  * 
  * SeedKit is free software: you can redistribute it and/or modify it
@@ -16,8 +16,15 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#ifndef _SEEDKIT_VIEWER_H
+#define _SEEDKIT_VIEWER_H
+typedef struct {
+  gboolean inspector;
+  gboolean widget;
+  gboolean menu;
+  gchar* script_path;
+  gchar** filenames;
+} SeedKitViewerSettings;
 
-#include "seedkit-viewer.h"
+#endif
 
-GtkWidget*
-create_window (gchar* file_uri, SeedKitViewerSettings* settings);

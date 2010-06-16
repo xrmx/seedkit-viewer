@@ -22,7 +22,8 @@ seedkit_viewer_SOURCES = \
 	seedkit-webkit.c \
 	seedkit-webkit.h \
 	seedkit-gtk.c \
-	seedkit-gtk.h 
+	seedkit-gtk.h \
+	seedkit-viewer.h
 
 seedkit_viewer_LDFLAGS = \
 	-L../libseedkit -Wl,--export-dynamic

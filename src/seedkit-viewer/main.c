@@ -29,6 +29,10 @@
 #include <webkit/webkit.h>
 #include <seed/seed.h>
 
+#include "seedkit-viewer.h"
+#include "seedkit-gtk.h"
+#include "seedkit-webkit.h"
+#include "seedkit-inspector.h"
 
 /*
  * Standard gettext macros.
@@ -52,26 +56,20 @@
 #  define N_(String) (String)
 #endif
 
-#include "seedkit-gtk.h"
-#include "seedkit-webkit.h"
-#include "seedkit-inspector.h"
 
 #define SEEDKIT_DEFAULT_UI_PATH "./ui.html"
 #define SEEDKIT_DEFAULT_INIT_PATH "./init.js"
 
-static gboolean inspector = FALSE;
-static gboolean widget = FALSE;
-static gboolean menu = FALSE;
-static gchar* script_path = NULL;
-static gchar** filenames = NULL;
+
+static SeedKitViewerSettings seedkit_viewer_settings = {FALSE, FALSE, FALSE, NULL, NULL};
 
 static GOptionEntry entries[] = 
 {
-  { "inspector", 'i', 0, G_OPTION_ARG_NONE, &inspector, "Display WebKit inspector", NULL },
-  { "widget", 'i', 0, G_OPTION_ARG_NONE, &widget, "Widget mode : no window decorations, ARGB color map.", NULL },
-  { "script", 's', 0, G_OPTION_ARG_STRING, &script_path, "An initializer script. Has full access to low level APIs.", "" },
-  { "menu", 'm', 0, G_OPTION_ARG_NONE, &menu, "Provide integration with a native menu.", NULL },
-  {G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &filenames, "Balbalbal", NULL},
+  { "inspector", 'i', 0, G_OPTION_ARG_NONE, &(seedkit_viewer_settings.inspector), "Display WebKit inspector", NULL },
+  { "widget", 'i', 0, G_OPTION_ARG_NONE, &(seedkit_viewer_settings.widget), "Widget mode : no window decorations, ARGB color map.", NULL },
+  { "script", 's', 0, G_OPTION_ARG_STRING, &(seedkit_viewer_settings.script_path), "An initializer script. Has full access to low level APIs.", "" },
+  { "menu", 'm', 0, G_OPTION_ARG_NONE, &(seedkit_viewer_settings.menu), "Provide integration with a native menu.", NULL },
+  {G_OPTION_REMAINING, 0, 0, G_OPTION_ARG_FILENAME_ARRAY, &(seedkit_viewer_settings.filenames), "Balbalbal", NULL},
   { NULL }
 };
 
@@ -125,11 +123,11 @@ main (int argc, char *argv[])
    
 	gtk_init (&argc, &argv);
 	
-	gchar* file_uri = get_file_uri (filenames ==  NULL ? SEEDKIT_DEFAULT_UI_PATH : filenames[0], error);
+	gchar* file_uri = get_file_uri (seedkit_viewer_settings.filenames ==  NULL ? SEEDKIT_DEFAULT_UI_PATH : seedkit_viewer_settings.filenames[0], error);
 	g_assert_no_error(error);
 	//gchar* script_uri = get_file_uri (script_path ==  NULL ? NULL : script_path, error);
 
-	window = create_window (file_uri, script_path, inspector, menu);
+	window = create_window (file_uri, &seedkit_viewer_settings);
 	g_free(file_uri);
 	gtk_widget_show_all (window);
 	gtk_main ();

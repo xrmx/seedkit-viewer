@@ -28,6 +28,7 @@
 #include <gtk/gtk.h>
 #include <webkit/webkit.h>
 
+#include "seedkit-viewer.h"
 #include "seedkit-webkit.h"
 #include "seedkit-inspector.h"
 
@@ -48,7 +49,7 @@ void set_window_title (WebKitWebView  *web_view,
 }
 
 GtkWidget*
-create_window (gchar* file_uri,gchar* script_uri, gboolean with_inspector, gboolean with_menu)
+create_window (gchar* file_uri, SeedKitViewerSettings* settings)
 {
 	GtkWidget *window;
 
@@ -59,18 +60,27 @@ create_window (gchar* file_uri,gchar* script_uri, gboolean with_inspector, gbool
                       G_CALLBACK (destroy), NULL);
 	GtkWidget* vbox = gtk_vpaned_new();
 
-	if (with_menu == TRUE) {
+	if (settings->menu == TRUE) {
 		// TODO, expose the menu instance in seed context
 		 GtkWidget* menu = gtk_menu_bar_new();
 		gtk_container_add (GTK_CONTAINER(vbox), menu);
 	}
 
-	GtkWidget* web_view = create_web_view (file_uri, script_uri);
+	GtkWidget* web_view = create_web_view (file_uri, settings->script_path);
+	if (settings->widget == TRUE) {
+		GdkScreen* screen = gtk_widget_get_screen (window);
+		GdkColormap* argb_colormap = gdk_screen_get_rgba_colormap (screen);
+		gtk_widget_set_colormap (window, argb_colormap);
+		gtk_window_set_decorated (GTK_WINDOW(window), FALSE);
+		webkit_web_view_set_transparent(web_view, TRUE);		
+
+	}
+
 	g_signal_connect(G_OBJECT(web_view), "title-changed", 
                       G_CALLBACK(set_window_title), window);
 	gtk_container_add (GTK_CONTAINER(vbox), web_view);
 	
-	if (with_inspector == TRUE)
+	if (settings->inspector == TRUE)
 		create_inspector(WEBKIT_WEB_VIEW(web_view), GTK_CONTAINER(vbox));
 
 	
