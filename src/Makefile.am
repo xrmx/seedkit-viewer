@@ -1,3 +1,3 @@
-SUBDIRS = libseedkit seedkit-viewer
+SUBDIRS = seedkit-viewer
 
 DISTCLEANFILES = *~

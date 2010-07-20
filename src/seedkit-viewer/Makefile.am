@@ -7,7 +7,7 @@ AM_CPPFLAGS = \
 	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
 	-DPACKAGE_SRC_DIR=\""$(srcdir)"\" \
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
-	$(SEEDKIT_CFLAGS) -I/usr/include/seedkit-1.0/ -I../
+	$(SEEDKIT_CFLAGS)
 
 AM_CFLAGS =\
 	 -Wall\
@@ -26,7 +26,7 @@ seedkit_viewer_SOURCES = \
 	seedkit-viewer.h
 
 seedkit_viewer_LDFLAGS = \
-	-L../libseedkit -Wl,--export-dynamic
+	-Wl,--export-dynamic
 
 seedkit_viewer_LDADD = $(SEEDKIT_LIBS) -lseedkit-1.0
 

@@ -15,7 +15,6 @@ AM_SILENT_RULES([yes])
 # Check for programs
 AC_PROG_CC
 
-AM_PROG_VALAC([0.7.0])
 
 #Initialize libtool
 LT_PREREQ([2.2])
@@ -23,14 +22,10 @@ LT_INIT
 
 
 # Check for libraries
-GTK_REQUIRED=2.12
-SEED_REQUIRED=2.31.1
-WEBKIT_REQUIRED=1.0
+SEEDKIT_REQUIRED=0.1
 
 PKG_CHECK_MODULES(SEEDKIT, [
-        gtk+-2.0    >= $GTK_REQUIRED
-        seed        >= $SEED_REQUIRED
-        webkit-1.0  >= $WEBKIT_REQUIRED
+        seedkit-1.0    >= $SEEDKIT_REQUIRED
 ])
 
 
@@ -81,8 +76,6 @@ AM_CONDITIONAL(ENABLE_GTK_DOC, test x$enable_gtk_doc = xyes)
 AC_CONFIG_FILES([
 Makefile
 src/Makefile
-src/libseedkit/Makefile
-src/libseedkit/seedkit-1.0.pc
 src/seedkit-viewer/Makefile
 po/Makefile.in
 ])

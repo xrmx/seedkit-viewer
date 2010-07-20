@@ -164,6 +164,8 @@ PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
+PKG_CONFIG_LIBDIR = @PKG_CONFIG_LIBDIR@
+PKG_CONFIG_PATH = @PKG_CONFIG_PATH@
 POFILES = @POFILES@
 POSUB = @POSUB@
 PO_IN_DATADIR_FALSE = @PO_IN_DATADIR_FALSE@
@@ -176,7 +178,6 @@ SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
 USE_NLS = @USE_NLS@
-VALAC = @VALAC@
 VERSION = @VERSION@
 XGETTEXT = @XGETTEXT@
 abs_builddir = @abs_builddir@
@@ -215,7 +216,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -235,7 +235,7 @@ AM_CPPFLAGS = \
 	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
 	-DPACKAGE_SRC_DIR=\""$(srcdir)"\" \
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
-	$(SEEDKIT_CFLAGS) -I/usr/include/seedkit-1.0/ -I../
+	$(SEEDKIT_CFLAGS)
 
 AM_CFLAGS = \
 	 -Wall\
@@ -252,7 +252,7 @@ seedkit_viewer_SOURCES = \
 	seedkit-viewer.h
 
 seedkit_viewer_LDFLAGS = \
-	-L../libseedkit -Wl,--export-dynamic
+	-Wl,--export-dynamic
 
 seedkit_viewer_LDADD = $(SEEDKIT_LIBS) -lseedkit-1.0
 DISTCLEANFILES = *~
