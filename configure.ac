@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 dnl Created by Anjuta application wizard.
 AC_PREREQ([2.63])
-AC_INIT([seedkit],[0.1])
+AC_INIT([seedkit-viewer],[0.1])
 
 AC_CONFIG_HEADERS([config.h])
 
@@ -34,7 +34,7 @@ dnl Internatinalization
 dnl ***************************************************************************
 IT_PROG_INTLTOOL([0.41.0])
 
-GETTEXT_PACKAGE=seedkit
+GETTEXT_PACKAGE=seedkit-viewer
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [GETTEXT package name])
 AM_GLIB_GNU_GETTEXT

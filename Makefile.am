@@ -4,7 +4,7 @@ ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 SUBDIRS = src po
 
-seedkitdocdir = ${prefix}/doc/seedkit
+seedkitdocdir = ${prefix}/doc/seedkit-viewer
 seedkitdoc_DATA = \
 	README\
 	COPYING\
@@ -19,8 +19,7 @@ INTLTOOL_FILES = intltool-extract.in \
 	intltool-update.in
 
 EXTRA_DIST = $(seedkitdoc_DATA) \
-	$(INTLTOOL_FILES)\
-	seedkit-1.0.pc.in
+	$(INTLTOOL_FILES)
 
 DISTCLEANFILES = intltool-extract \
 	intltool-merge \
@@ -31,4 +30,4 @@ DISTCLEANFILES = intltool-extract \
 
 # Remove doc directory on uninstall
 uninstall-local:
-	-rm -r $(seedkitdocdir)
+#	-rm -r $(seedkitdocdir)
