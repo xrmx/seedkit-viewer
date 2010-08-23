@@ -19,7 +19,8 @@ INTLTOOL_FILES = intltool-extract.in \
 	intltool-update.in
 
 EXTRA_DIST = $(seedkitdoc_DATA) \
-	$(INTLTOOL_FILES)
+	$(INTLTOOL_FILES) \
+	examples/
 
 DISTCLEANFILES = intltool-extract \
 	intltool-merge \
