@@ -87,21 +87,12 @@ void goption_init(int argc, char *argv[],GError *error)
     }
 }
 
-gchar* get_file_uri(gchar* file_path, GError* error) {
+gchar* get_file_uri (gchar* file_path, GError* error) {
 	if (file_path == NULL)
 		return NULL;
-	
-	gboolean is_uri = !g_path_is_absolute (file_path);
-	if (is_uri)
-		return g_strdup(file_path);
-	
-	gchar* current_dir = g_get_current_dir();
-	gchar* absolute_filename =  g_strdup_printf("%s/%s", current_dir, file_path);
-	g_free(current_dir);
-	gchar* file_uri = g_filename_to_uri (absolute_filename, NULL, &error);
-	g_free(absolute_filename);
-	
-	return file_uri;
+
+	gchar* uri =  g_strdup_printf ("file://%s\n", file_path);
+	return uri;
 }
 
 int
@@ -125,8 +116,8 @@ main (int argc, char *argv[])
 	
 	gchar* file_uri = get_file_uri (seedkit_viewer_settings.filenames ==  NULL ? SEEDKIT_DEFAULT_UI_PATH : seedkit_viewer_settings.filenames[0], error);
 	g_assert_no_error(error);
-	//gchar* script_uri = get_file_uri (script_path ==  NULL ? NULL : script_path, error);
-
+	
+	g_debug("%s\n", file_uri);
 	window = create_window (file_uri, &seedkit_viewer_settings);
 	g_free(file_uri);
 	gtk_widget_show_all (window);
