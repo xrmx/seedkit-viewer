@@ -1,0 +1,7 @@
+SeedKit viewer libnotify example:
+
+This example showcases the use of a native library (libnotify) from within the javascript context.
+
+The example can be lanched by invoking seedkit-viewer from the examples/notification directory
+
+It requires that the gobject-introspection files of libnotify to be installed (gir1.0-notify on Ubuntu).
