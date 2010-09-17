@@ -78,5 +78,6 @@ Makefile
 src/Makefile
 src/seedkit-viewer/Makefile
 po/Makefile.in
+data/Makefile
 ])
 AC_OUTPUT

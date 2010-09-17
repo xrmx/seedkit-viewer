@@ -1,0 +1,30 @@
+.\” 
+.\” Contact seedkit-list@gnome.org
+.TH SEEDKITVIEWER 1 "17 Sept 2010"
+.SH NAME
+seedkit-viewer \- SeedKit hybrid applications launcher
+.SH SYNOPSIS
+.B seedkit-viewer
+[
+.I OPTION
+] html-file
+.SH DESCRIPTION
+.B seedkit-view launches the hybrid application defined by HTML file provided as command-line argument.
+A hybrid application is a local web page with access to desktop and system facilities asprovided by Seed.
+.SH OPTIONS
+.TP
+.B  \-i, \-\-inspector
+Display WebKit inspector
+.TP
+.B  \-\-widget
+Widget mode : no window decorations, ARGB color map.
+.TP
+.B  \-s, \-\-script\=
+An initializer script. Has full access to low level APIs.
+
+.SH SEE ALSO
+seed(1)
+.SH BUGS
+No known bugs for this template, except you might want to replace the quotes if you copy from my blog.
+.SH AUTHOR
+The SeedKit team (seedkit-list@gnome.org)
