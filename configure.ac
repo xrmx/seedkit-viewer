@@ -22,7 +22,7 @@ LT_INIT
 
 
 # Check for libraries
-SEEDKIT_REQUIRED=0.1
+SEEDKIT_REQUIRED=0.2
 
 PKG_CHECK_MODULES(SEEDKIT, [
         seedkit-1.0    >= $SEEDKIT_REQUIRED
@@ -79,5 +79,7 @@ src/Makefile
 src/seedkit-viewer/Makefile
 po/Makefile.in
 data/Makefile
+debian.cnl
+seedkit-viewer.spec
 ])
 AC_OUTPUT
