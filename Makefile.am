@@ -20,7 +20,9 @@ INTLTOOL_FILES = intltool-extract.in \
 
 EXTRA_DIST = $(seedkitdoc_DATA) \
 	$(INTLTOOL_FILES) \
-	examples/
+	examples/* \
+	debian/* \
+	TODO.tasks
 
 DISTCLEANFILES = intltool-extract \
 	intltool-merge \
