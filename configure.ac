@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 dnl Created by Anjuta application wizard.
 AC_PREREQ([2.63])
-AC_INIT([seedkit-viewer],[master])
+AC_INIT([seedkit-viewer],[0.2])
 
 AC_CONFIG_HEADERS([config.h])
 
@@ -22,11 +22,18 @@ LT_INIT
 
 
 # Check for libraries
+GTK_REQUIRED=2.21.5
 SEEDKIT_REQUIRED=0.2
 
-PKG_CHECK_MODULES(SEEDKIT, [
+PKG_CHECK_MODULES(SEEDKIT,
+	gtk+-2.0 >= $GTK_REQUIRED dnl
         seedkit-1.0    >= $SEEDKIT_REQUIRED
-])
+	
+)
+
+# Expose requirements for using in spec and pc file
+AC_SUBST(GTK_REQUIRED)
+AC_SUBST(SEEDKIT_REQUIRED)
 
 
 dnl ***************************************************************************
@@ -79,7 +86,6 @@ src/Makefile
 src/seedkit-viewer/Makefile
 po/Makefile.in
 data/Makefile
-debian.cnl
-seedkit-viewer.spec
+debian/control
 ])
 AC_OUTPUT

@@ -28,7 +28,7 @@ seedkit_viewer_SOURCES = \
 seedkit_viewer_LDFLAGS = \
 	-Wl,--export-dynamic
 
-seedkit_viewer_LDADD = $(SEEDKIT_LIBS) -lseedkit-1.0
+seedkit_viewer_LDADD = $(SEEDKIT_LIBS)
 
 DISTCLEANFILES = *~
 
