@@ -2,7 +2,6 @@ Source: seedkit-viewer
 Priority: extra
 Maintainer: The SeedKit team <seedkit-list@gnome.org>
 Build-Depends: debhelper (>= 7.0.50~), autotools-dev, libgtk2.0-dev (>= @GTK_REQUIRED@), seedkit-dev (>= @SEEDKIT_REQUIRED@)
-Depends: libgtk2.0-0 (@GTK_REQUIRED@), seedkit1 (>= @SEEDKIT_REQUIRED@)
 Standards-Version: @VERSION@
 Section: desktop
 Homepage: http://live.gnome.org/SeedKit
@@ -12,5 +11,8 @@ Vcs-Git: git@gitorious.org:seedkit/seedkit.git
 Package: seedkit-viewer
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Description: SeedKit viewer provide a runtime environment for web designed native applications
+
+
+
+

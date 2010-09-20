@@ -117,7 +117,6 @@ main (int argc, char *argv[])
 	gchar* file_uri = get_file_uri (seedkit_viewer_settings.filenames ==  NULL ? SEEDKIT_DEFAULT_UI_PATH : seedkit_viewer_settings.filenames[0], error);
 	g_assert_no_error(error);
 	
-	g_debug("%s\n", file_uri);
 	window = create_window (file_uri, &seedkit_viewer_settings);
 	g_free(file_uri);
 	gtk_widget_show_all (window);
