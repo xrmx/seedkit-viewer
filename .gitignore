@@ -6,4 +6,5 @@ Debug/
 Optimized/
 .anjuta/
 .anjuta_sym_db.db
-
+make-dist-deb.sh
+debian/

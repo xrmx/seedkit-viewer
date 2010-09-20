@@ -12,5 +12,7 @@ Package: seedkit-viewer
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: SeedKit viewer provide a runtime environment for web designed native applications
-SeedKit viewer provide a runtime environment for web designed native applications
+
+
+
 

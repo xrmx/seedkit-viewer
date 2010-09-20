@@ -26,8 +26,8 @@ GTK_REQUIRED=2.21.5
 SEEDKIT_REQUIRED=0.2
 
 PKG_CHECK_MODULES(SEEDKIT,
-	gtk+-2.0 >= $GTK_REQUIRED dnl
-        seedkit-1.0    >= $SEEDKIT_REQUIRED
+	gtk+-2.0    >= $GTK_REQUIRED dnl
+        seedkit-1.0 >= $SEEDKIT_REQUIRED
 	
 )
 
@@ -85,7 +85,9 @@ Makefile
 src/Makefile
 src/seedkit-viewer/Makefile
 po/Makefile.in
+doc/Makefile
 data/Makefile
-debian/control
+data/control
+data/seedkit-viewer.spec
 ])
 AC_OUTPUT

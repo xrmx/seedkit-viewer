@@ -2,7 +2,7 @@
 ## Created by Anjuta
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
-SUBDIRS = src po data
+SUBDIRS = src po doc data
 
 seedkitdocdir = ${prefix}/doc/seedkit-viewer
 seedkitdoc_DATA = \
@@ -21,7 +21,6 @@ INTLTOOL_FILES = intltool-extract.in \
 EXTRA_DIST = $(seedkitdoc_DATA) \
 	$(INTLTOOL_FILES) \
 	examples/* \
-	debian/* \
 	TODO.tasks
 
 DISTCLEANFILES = intltool-extract \

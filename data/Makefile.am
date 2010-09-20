@@ -1,4 +1,2 @@
-man5_MANS = seedkit-viewer.man
-
-EXTRA_DIST = $(man5_MANS)
-
+EXTRA_DIST = seedkit-viewer.spec \
+	     control
