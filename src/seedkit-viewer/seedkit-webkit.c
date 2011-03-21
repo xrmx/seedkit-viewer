@@ -26,7 +26,7 @@
 #include <config.h>
 
 #include <gtk/gtk.h>
-#include <seed/seed.h>
+#include <seed.h>
 #include <webkit/webkit.h>
 #include <seedkit-view.h>
 

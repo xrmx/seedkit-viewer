@@ -17,7 +17,7 @@
  */
 
 #include <gtk/gtk.h>
-#include <seed/seed.h>
+#include <seed.h>
 #include <webkit/webkit.h>
 
 WebKitWebView*  add_inspector_to_container (WebKitWebInspector *web_inspector,

@@ -27,7 +27,7 @@
 
 #include <gtk/gtk.h>
 #include <webkit/webkit.h>
-#include <seed/seed.h>
+#include <seed.h>
 
 #include "seedkit-viewer.h"
 #include "seedkit-gtk.h"
@@ -100,6 +100,7 @@ main (int argc, char *argv[])
 {
  	GtkWidget *window;
 	GError *error = NULL;
+	GFile *ui_file;
 
 #ifdef ENABLE_NLS
 	bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
@@ -108,13 +109,13 @@ main (int argc, char *argv[])
 #endif
 	
 	goption_init(argc, argv, error);
-	gtk_set_locale ();
 	g_thread_init(NULL);
 	gdk_threads_init();       
    
 	gtk_init (&argc, &argv);
 	
-	gchar* file_uri = get_file_uri (seedkit_viewer_settings.filenames ==  NULL ? SEEDKIT_DEFAULT_UI_PATH : seedkit_viewer_settings.filenames[0], error);
+	ui_file = g_file_new_for_commandline_arg (seedkit_viewer_settings.filenames ==  NULL ? SEEDKIT_DEFAULT_UI_PATH : seedkit_viewer_settings.filenames[0]);
+	gchar* file_uri = g_file_get_uri (ui_file);
 	g_assert_no_error(error);
 	
 	window = create_window (file_uri, &seedkit_viewer_settings);

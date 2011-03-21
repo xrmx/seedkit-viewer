@@ -22,11 +22,11 @@ LT_INIT
 
 
 # Check for libraries
-GTK_REQUIRED=2.21.5
+GTK_REQUIRED=3.0
 SEEDKIT_REQUIRED=0.2
 
 PKG_CHECK_MODULES(SEEDKIT,
-	gtk+-2.0    >= $GTK_REQUIRED dnl
+	gtk+-3.0    >= $GTK_REQUIRED dnl
         seedkit-1.0 >= $SEEDKIT_REQUIRED
 	
 )

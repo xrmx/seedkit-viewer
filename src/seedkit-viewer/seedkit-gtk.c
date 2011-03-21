@@ -69,9 +69,14 @@ create_window (gchar* file_uri, SeedKitViewerSettings* settings)
 
 	GtkWidget* web_view = create_web_view (file_uri, settings->script_path);
 	if (settings->widget == TRUE) {
-		GdkScreen* screen = gtk_widget_get_screen (window);
-		GdkColormap* argb_colormap = gdk_screen_get_rgba_colormap (screen);
-		gtk_widget_set_colormap (window, argb_colormap);
+	
+	GdkScreen* screen = gtk_widget_get_screen (window);
+	GdkVisual *visual = gdk_screen_get_rgba_visual (screen);
+	if (visual == NULL)
+  		visual = gdk_screen_get_system_visual (screen);
+
+		gtk_widget_set_visual (GTK_WIDGET (window), visual);
+		
 		gtk_window_set_decorated (GTK_WINDOW(window), FALSE);
 		webkit_web_view_set_transparent(WEBKIT_WEB_VIEW(web_view), TRUE);		
 
